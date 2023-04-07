@@ -1,0 +1,99 @@
+{
+    "sections": {
+        "aa208877-b564-4de4-90a2-e63840b62017": {
+            "type": "hero",
+            "blocks": {
+                "a78309a1-6c05-4004-a4e2-45e7deb27b44": {
+                    "type": "image",
+                    "settings": {
+                        "title": "hello Champ",
+                        "subheading": "Code WIth Harry",
+                        "image": "shopify:\/\/shop_images\/6.jpg",
+                        "link": "",
+                        "text_align": "items-center",
+                        "text_size": 46,
+                        "text_mobile_size": 32
+                    }
+                },
+                "1d2c81b4-9154-444b-9ee7-77482c57b2c8": {
+                    "type": "image",
+                    "settings": {
+                        "title": "Welcome the earth",
+                        "subheading": "And optional subtext",
+                        "image": "shopify:\/\/shop_images\/slider.jpg",
+                        "link": "",
+                        "text_align": "items-center justify-center",
+                        "text_size": 50,
+                        "text_mobile_size": 30
+                    }
+                }
+            },
+            "block_order": [
+                "a78309a1-6c05-4004-a4e2-45e7deb27b44",
+                "1d2c81b4-9154-444b-9ee7-77482c57b2c8"
+            ],
+            "settings": {
+                "title": "Expectional",
+                "color_text": "#dd1d1d"
+            }
+        },
+        "ab806b25-92b0-417c-a877-d26ec9171eb4": {
+            "type": "featured-collections-tab",
+            "disabled": true,
+            "blocks": {
+                "4bf7c1ac-7bfa-4a04-960c-66f647b9ce6f": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "gold-pendal-butti",
+                        "title": "Gold Pendal Butti"
+                    }
+                },
+                "afabc510-18f6-4e84-af45-267c38ac76fc": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "matte-pendal-butti",
+                        "title": "Matte Pendal Butti"
+                    }
+                },
+                "6fc6d99a-0ce5-44b7-9e63-7fb3db0535c1": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "mangalsutra",
+                        "title": "Mangalsutra Matte"
+                    }
+                },
+                "8dc2dd2f-111f-49d0-a04e-986c70de5168": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "pendal-butti",
+                        "title": "pendal Butti"
+                    }
+                },
+                "03bde966-3ed9-407c-9971-0d8bd2c0c11a": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "silver-pendal-butti",
+                        "title": "silver pendal Butti"
+                    }
+                }
+            },
+            "block_order": [
+                "4bf7c1ac-7bfa-4a04-960c-66f647b9ce6f",
+                "afabc510-18f6-4e84-af45-267c38ac76fc",
+                "6fc6d99a-0ce5-44b7-9e63-7fb3db0535c1",
+                "8dc2dd2f-111f-49d0-a04e-986c70de5168",
+                "03bde966-3ed9-407c-9971-0d8bd2c0c11a"
+            ],
+            "settings": {
+                "title": "SHOP NEW ARRIVALS",
+                "warning_msg_product": "THERE ARE NO PRODUCTS IN THE COLLECTION SECELETED",
+                "warning_msg_collection": "SELECTED COLLECTION IS NOT EXISTS",
+                "width": "wide"
+            }
+        }
+    },
+    "order": [
+        "aa208877-b564-4de4-90a2-e63840b62017",
+        "ab806b25-92b0-417c-a877-d26ec9171eb4"
+    ]
+}

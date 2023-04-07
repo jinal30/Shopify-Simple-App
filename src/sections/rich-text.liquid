@@ -1,0 +1,175 @@
+<div class="page-width">
+  <div style="background-color: {{ section.settings.rich_text_color | default: '#ffffff'  }}" class="py-12">
+    {%- for block in section.blocks -%}
+      <div class="rich_text--{{  block.id  }}" data-id="{{ block.id }}">
+        {%- case block.type -%}
+          {%- when 'header' -%}
+          <div class="{{ block.settings.header_size }} {{ section.settings.content_text }}">
+            {{ block.settings.rich_heading_text }}
+          </div>
+          {%- when 'text' -%}
+          <div class="text_content  {{ section.settings.content_text }} {{ block.settings.text_size }}">
+            {{ block.settings.text }}
+          </div>
+          {%- when 'button' -%}
+          <div class="button_link">
+            <a
+              href="{{ block.settings.btn_link }}"
+              class="button_box"
+              style="background-color: {{ block.settings.btn_color | default: '#000000' }}; color:{{ block.settings.btn_text_color | default: '#ffffff'  }}; ">
+              {{ block.settings.link_text }}
+            </a>
+          </div>
+          {%- when 'page' -%}
+          <div class="page_content">
+            {%- if block.settings.page_text != blank -%}
+              {{ pages[block.settings.page_text].content }}
+            {% endif %}
+          </div>
+        {% endcase %}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+
+<style></style>
+
+
+{% schema %}
+  {
+    "name": "Rich-text",
+    "settings": [
+      {
+        "type": "select",
+        "id": "content_text",
+        "label": "Content alignment",
+        "default": "item-center text-center",
+        "options": [
+          {
+            "value": "item-center text-center",
+            "label": "center"
+          }, {
+            "value": "item-left text-left",
+            "label": "left"
+          }, {
+            "value": "item-right text-right",
+            "label": "right"
+          }
+        ]
+      }, {
+        "type": "checkbox",
+        "id": "narrow_checkbox",
+        "label": "Narrow column"
+      }, {
+        "type": "color",
+        "id": "rich_text_color",
+        "label": "Background-color"
+      }, {
+        "type": "checkbox",
+        "id": "section-divider",
+        "label": "Show section divider"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "header",
+        "name": "Heading",
+        "settings": [
+          {
+            "type": "text",
+            "id": "rich_heading_text",
+            "label": "Heading Text"
+          }, {
+            "type": "select",
+            "id": "header_size",
+            "label": "Headeing Size",
+            "default": "text-4xl font-bold dark:text-white",
+            "options": [
+              {
+                "value": "text-4xl font-bold dark:text-white",
+                "label": "large"
+              }, {
+                "value": "text-3xl font-bold dark:text-white",
+                "label": "medium"
+              }, {
+                "value": "text-2xl font-bold dark:text-white",
+                "label": "small"
+              }
+            ]
+          }
+        ]
+      }, {
+        "name": "Text",
+        "type": "text",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "text_checkbox",
+            "label": "Enlarge text",
+            "default": true
+          }, {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }, {
+            "type": "select",
+            "id": "text_size",
+            "label": "Text Size",
+            "default": "text-lg font-normal",
+            "options": [
+              {
+                "value": "text-xl font-medium",
+                "label": "large"
+              }, {
+                "value": "text-lg font-normal",
+                "label": "medium"
+              }, {
+                "value": "text-xs font-thin",
+                "label": "small"
+              }
+            ]
+          }
+        ]
+      }, {
+        "name": "Button",
+        "type": "button",
+        "settings": [
+          {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button"
+          }, {
+            "type": "text",
+            "id": "link_text",
+            "label": "Button text",
+            "default": "Button"
+          }, {
+            "type": "color",
+            "id": "btn_color",
+            "label": "Button color"
+          }, {
+            "type": "color",
+            "id": "btn_text_color",
+            "label": "Button text Color"
+          }
+        ]
+      }, {
+        "name": "Page",
+        "type": "page",
+        "settings": [
+          {
+            "type": "page",
+            "id": "page_text",
+            "label": "Page "
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Rich Text"
+      }
+    ]
+  }
+{% endschema %}

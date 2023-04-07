@@ -1,0 +1,85 @@
+
+<div class=" page-width">
+  <div class="py-10">
+    <div >
+        <h2 class="{{ section.settings.collection_header_position }} {{ section.settings.collection_header_size }} py-5">{{ section.settings.title | escape }}</h2>
+    <div>
+      <div class="flex flex-wrap collection-item" id="{{ section.id }}">
+        
+        {%- for block in section.blocks -%}
+          <div class="md:w-1/5 collection-items" id="Slider-{{ section.id }}-{{ forloop.index }}">
+         
+            {% render 'collection-item', collection_item: block.settings.collection, media_aspect_ratio: section.settings.image_ratio %}
+          </div>
+        {%- endfor -%}
+      </div>
+    
+    </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collection-list",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Collection"
+      }, {
+        "type": "select",
+        "id": "collection_header_size",
+        "label": "Collection Headering Size",
+        "default": "text-3xl font-normal",
+        "options": [
+          {
+            "value": "text-4xl font-medium",
+            "label": "large"
+          }, {
+            "value": "text-3xl font-normal",
+            "label": "medium"
+          }, {
+            "value": "text-2xl font-thin",
+            "label": "small"
+          }
+        ]
+      }, {
+        "type": "select",
+        "id": "collection_header_position",
+        "label": "Header Position",
+        "default": "item-center text-center",
+        "options": [
+          {
+            "value": "item-center text-center",
+            "label": "center"
+          }, {
+            "value": "item-right text-right",
+            "label": "right"
+          }, {
+            "value": "item-left text-left",
+            "label": "left"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "header",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection List"
+      }
+    ]
+  }
+{% endschema %}

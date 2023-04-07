@@ -1,0 +1,76 @@
+{% style %}
+  #shopify-section-{{ id }}{
+    {% if width == 'wide' %}
+      width: 100%;
+    {% endif %}
+  }
+{% endstyle %}
+<div>
+  {% if section.settings.title != blank %}
+    <h1 class="text-center mb-2.5 md:mb-3.5 lg:mb-5 md:text-lg lg:text-xl xl:text-2xl font-semibold tracking-wide">{{ section.settings.title }}</h1>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Featured-collection-tab",
+    "class": "featured-collection-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Main Handle"
+      },
+      {
+        "type": "header",
+        "content": "Warning message"
+      },
+      {
+        "type": "text",
+        "id": "warning_msg_product",
+        "label": "collection empty so waring message",
+        "default": "THERE ARE NO PRODUCTS IN THE COLLECTION SECELETED "
+      },
+      {
+        "type": "text",
+        "id": "warning_msg_collection",
+        "label": "Collection Deleted so warning message",
+        "default": "SELECTED COLLECTION IS NOT EXISTS"
+      }, {
+        "type": "header",
+        "content": "layout"
+      }, {
+        "type": "select",
+        "id": "width",
+        "label": "Width",
+        "options": [
+          {
+            "value": "standerd",
+            "label": "Standerd"
+          }, {
+            "value": "wide",
+            "label": "Wide"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }, {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }
+        ]
+      }
+    ]
+
+  }
+{% endschema %}

@@ -1,0 +1,44 @@
+<div class="main-announcement announce">
+  <div class="announce p-3 w-full">
+    <p class=" text-center text-xs">Midseason Sale: 20% off-Auto Appiled at Checkout - limited Time Only</p>
+  </div>
+  <div class="announce p-3 w-full">
+    <p class=" text-center text-xs">Easy to Use And Multipale Benifit with Join Us!</p>
+  </div>
+  <div class="announce p-3 w-full">
+    <p class=" text-center text-xs">100% off per Your Order</p>
+  </div>
+</div>
+
+<style>
+  .announce {
+    background: {{- section.settings.color_announcement -}}
+    ;
+    color: {{- section.settings.color_text -}}
+    ;
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Announcement-bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "Autoplay",
+        "label": "Auto-play"
+      }, {
+        "type": "color",
+        "id": "color_announcement",
+        "label": "Background color",
+        "default": "#B19393"
+      }, {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text Color",
+        "default": "#000"
+      }
+    ]
+  }
+{% endschema %}

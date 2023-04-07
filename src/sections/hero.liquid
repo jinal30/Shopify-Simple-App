@@ -1,0 +1,237 @@
+<div
+  data-section-type="slideshow-section"
+  id="slide_show"
+  class="relative"
+  data-section-id="{{ section.id }}">
+  {%- for block in section.blocks -%}
+    {% liquid
+      assign natural_height = false
+      assign hero_text = false
+      assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
+      assign img_url = block.settings.middle_block_image | img_url : '1x1' | replace: '_1x1.', '_{width}x.'
+      if block.settings.title != blank or block.settings.subheading !=  blank
+        assign hero_text = true
+      endif
+
+
+      assign has_mobile_image = false
+      if block.settings.mobile_image != blank
+        assign has_mobile_image = true
+      endif
+
+      assign silde_link = false
+      if block.settings.link_text != blank
+        assign silde_link = true
+      endif
+    %}
+
+
+
+    {%- assign natural_height = true -%}
+    {%- capture natural_height_ratio -%}
+      {{ 100 | divided_by: block.settings.image.aspect_ratio }}
+    {%- endcapture -%}
+
+    {%- if block.settings.mobile_image != blank -%}
+      {%- assign natural_mobile_height = true -%}
+      {%- capture natural_mobile_height -%}
+        {{ 100 | divided_by: block.settings.mobile_height.aspect_ratio }}
+      {%- endcapture -%}
+    {%- endif -%}
+
+
+    <div class="loaded w-full">
+      <div class="relative slider-img">
+        {%- if block.settings.image != blank -%}
+          <img
+            class="hidden{% if has_mobile_image %} md:block{% endif %}"
+            src="{{ block.settings.image | img_url: 'master' }}"
+            alt="{{ block.settings.image.alt | escape }}">
+
+          <div class="small-silder">
+            <div>
+              <img src="{{ block.settings.middle_block_image | img_url: 'master' }}" alt="{{ block.settings.middle_block_image.alt | escape }}">
+            </div>
+          </div>
+
+          {%- if has_mobile_image -%}
+            {% assign mobile_img_url = block.settings.mobile_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            {%- if block.settings.mobile_image != blank -%}
+              <img
+                class="block md:hidden w-full"
+                src="{{ block.settings.mobile_image | img_url: '300px' }}"
+
+                alt="{{ block.settings.mobile_img_url.alt | escape }}">
+            {%- endif -%}
+          {%- endif -%}
+
+
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+
+
+        {%- if hero_text -%}
+          <div class="absolute z-30 top-0 left-0 right-0 bottom-0 w-full h-full">
+            <div class="container mx-auto h-full slide-content-inner ">
+              <div class="flex {{ block.settings.text_align }} bottom-0 h-full">
+                <div class="hero__text-content">
+                  <h1 class="font-medium hero_title leading-none tracking-wider" id="heading--{{ block.id }}">{{ block.settings.title | newline_to_br }}</h1>
+                  <p class="md:pt-3 tracking-wider">{{ block.settings.subheading }}</p>
+
+                  {% if silde_link %}
+                    <div class="md:text-black md:bg-white py-2 px-3 md:pt-3 text-center tracking-widest" style="width: fit-content;">
+                      {{ block.settings.link_button }}
+                    </div>
+                  {% endif %}
+                </div>
+
+                <style>
+                  #heading--{{ block.id }}{
+                    font-size: {{- block.settings.text_size | times: 0.5 -}}
+                    px;
+                  }
+                  @media screen and (max-width: 767px) {
+                    #heading--{{ block.id }}{
+                      font-size: {{- block.settings.text_mobile_size -}}
+                      px;
+                    }
+                  }
+                </style>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endfor -%}
+</div>
+
+<div></div>
+
+
+<style>
+  .hero__text-content {
+    color: {{- section.settings.color_text -}}
+    ;
+  }
+</style>
+
+{% schema %}
+  {
+
+    "name": "Slidshow",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }, {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text Color",
+        "default": "#fff"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Slide-Block ",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Heading",
+            "default": "One Text\ntitle slide."
+          },
+          {
+            "type": "text",
+            "id": "subheading",
+            "label": "Text",
+            "default": "And optional subtext"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "middle_block_image",
+            "label": "Middle Block Image"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Slide link"
+          }, {
+            "type": "select",
+            "id": "text_align",
+            "label": "Text alignment",
+            "default": "items-center justify-center",
+            "options": [
+              {
+                "value": "items-center",
+                "label": "Center left"
+              },
+              {
+                "value": "items-center justify-center",
+                "label": "Center"
+              },
+              {
+                "value": "items-center justify-end",
+                "label": "Center right"
+              },
+              {
+                "value": "items-end",
+                "label": "Bottom left"
+              }, {
+                "value": "items-end justify-center",
+                "label": "Bottom center"
+              }, {
+                "value": "items-end justify-end",
+                "label": "Bottom right"
+              }
+            ]
+          }, {
+            "type": "range",
+            "id": "text_size",
+            "label": "Text Size",
+            "default": 70,
+            "min": 50,
+            "max": 120,
+            "unit": "px"
+          }, {
+            "type": "range",
+            "id": "text_mobile_size",
+            "label": "Mobile Text Size",
+            "default": 30,
+            "min": 20,
+            "max": 60,
+            "unit": "px"
+          }, {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "Mobile Image"
+          }, {
+            "type": "url",
+            "id": "link_text",
+            "label": "Slide Link Text"
+          }, {
+            "type": "text",
+            "id": "link_button",
+            "label": "Slider Button",
+            "default": "SHOP NOW"
+
+          }
+        ]
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Slidshow"
+
+      }
+    ]
+  }
+{% endschema %}
