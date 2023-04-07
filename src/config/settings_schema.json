@@ -64,6 +64,30 @@
                     "type": "text",
                     "id": "instra_id",
                     "label": "Instagram"
+                }, {
+                    "type": "text",
+                    "id": "facebook_id",
+                    "label": "facebook"
+                }, {
+                    "type": "text",
+                    "id": "twitter_id",
+                    "label": "Twitter"
+                }, {
+                    "type": "text",
+                    "id": "pinterest_id",
+                    "label": "Pinterest"
+                }, {
+                    "type": "text",
+                    "id": "youtube_id",
+                    "label": "Youtube"
+                }, {
+                    "type": "text",
+                    "id": "tiktok_id",
+                    "label": "Tiktok"
+                }, {
+                    "type": "text",
+                    "id": "linked_id",
+                    "label": "Linked"
                 }
             ]
         }
