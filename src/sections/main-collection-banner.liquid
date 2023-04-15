@@ -1,0 +1,48 @@
+{% assign collection_back_color = section.settings.collection_back_color %}
+<div class=" bg_color">
+  <div class="flex justify-between">
+    <div class="text-4xl center p-5">
+      {{- collection.title | escape -}}
+    </div>
+    {%- if section.settings.collection_image_show != blank -%}
+      {%- if collection.image != blank -%}
+        <div class="p-8">
+          <img src="{{- collection.image | img_url: '380x285' -}}">
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+  {%- if section.settings.collection_description_show != blank -%}
+    <div class="collection_description">
+      {{- collection.description -}}
+    </div>
+  {%- endif -%}
+</div>
+
+{% style %}
+  .bg_color {
+    background-color: {{ section.settings.collection_back_color | default: '#ffffff'  }}
+    ;
+  }
+{% endstyle %}
+{% schema %}
+  {
+    "name": "Collection banner",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "collection_description_show",
+        "label": "Show collection description"
+      }, {
+        "type": "checkbox",
+        "id": "collection_image_show",
+        "label": "Show collection image",
+        "default": false
+      }, {
+        "type": "color",
+        "id": "collection_back_color",
+        "label": "Background Color"
+      }
+    ]
+  }
+{% endschema %}

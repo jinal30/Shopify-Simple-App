@@ -1,10 +1,14 @@
 {
     "sections": {
-        "main": {
-            "type": "main-collection-banner"
+        "banner": {
+            "type": "main-collection-banner",
+            "settings": {
+                "collection_image_show": true,
+                "collection_back_color": "white"
+            }
         }
     },
     "order": [
-        "main"
+        "banner"
     ]
 }

@@ -7,10 +7,10 @@
       <div class="flex flex-wrap collection-item" id="{{ section.id }}">
         
         {%- for block in section.blocks -%}
-          <div class="md:w-1/5 collection-items" id="Slider-{{ section.id }}-{{ forloop.index }}">
+          <a href="{{ block.settings.collection }}" class="md:w-1/5 collection-items" id="Slider-{{ section.id }}-{{ forloop.index }}">
          
             {% render 'collection-item', collection_item: block.settings.collection, media_aspect_ratio: section.settings.image_ratio %}
-          </div>
+          </a>
         {%- endfor -%}
       </div>
     

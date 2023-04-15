@@ -1,0 +1,134 @@
+{%liquid
+ 
+  assign sort_by = results.sort_by | default: results.default_sort_by
+  assign total_active_values = 0
+  if results.url
+    assign results_url = results.url
+  else
+    assign terms = results.terms | escape
+    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+  endif
+%}
+
+  <div >
+  
+
+<!-- filter-pulse -->
+
+
+
+<!-- pulse-filter -->
+<div class="page-width">
+  <form>
+    <section class="filter-section" id="Collection">
+     
+      <div class="pulse-filter">
+        {% for filter in collection.filters %}
+        <details class="filter-main details-has-popup-open">
+          <summary class="" aria-expanded="false">
+            <li class="filter-icon-label">{{filter.label}}
+              {% if filter.active_values.size > 0 %}
+              <span>({{ filter.active_values.size }})</span>
+              {% endif %}
+            </li>
+          </summary>
+          <div class="filter-group-fill">
+            <div class="filter-group-first">
+              <span class="filter-header-selected">Selected({{filter.values.size}})</span>
+              <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</a>
+            </div>
+
+            {% case filter.type %}
+            {% when 'list' %}
+            <ul class="filter-group-list">
+              {% for filter_values in filter.values %}
+              <label class="filter-values-show">
+                <input type="checkbox"
+                       class="filter-checkbox"
+                       name="{{ filter_values.param_name }}"
+                       value="{{ filter_values.value }}"
+                       {% if filter_values.active %}checked{% endif %}
+                       >
+                {{filter_values.label}}
+              </label>
+              {% endfor %}
+            </ul>
+
+            {% when 'price_range' %}
+            <div class="prise-group filter-group-list">
+              <span>{{ cart.currency.symbol }}</span>
+              <div class="prise-front">
+                <input type="number" name="{{filter.min_value.param_name}}"
+                        class="filter-checkbox"
+                       {% if filter.min_value.value -%}
+                       value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                       {%- endif %}
+                   placeholder="From"
+                       max="0"
+                       max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                       >
+              </div>
+              <span>{{ cart.currency.symbol }}</span>
+              <div class="prise-front">
+                <input type="number" name="{{filter.max_value.param_name}}"
+                        class="filter-checkbox"
+                       value="{{filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                       placeholder="To"
+                       min="0"
+                       min="{{ filter.range_max }}"
+                       >
+              </div>
+            </div>
+            {% endcase %}
+          </div>
+        </details>
+        {% endfor %}
+        <div class="filter-clear">
+          {% for filter in collection.filters %}
+            {%- if filter.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
+          {% if filter.type == "price_range" %}
+          {% if filter.min_value.value != nil or filter.max_value.value != nil %}
+          <a href="{{filter.url_to_remove}}">
+            {% assign min_value = filter.min_value.value | default:0 %}
+            {% assign max_value = filter.max_value.value | default:filter.range_max %}
+            {{ min_value | money }} - {{ max_value | money }}
+          </a>
+          {% endif %}
+          {% for filter_value in filter.active.value  %}
+
+          <a class="active-filters__remove-filter" href="{{ collection.url }}">
+            {{ filter.label }}: {{ filter_value.label }}
+          </a>
+
+          {% endfor %}
+          {% endif %}
+
+          {% endfor %}
+          <a href="{{collection.url}}">Clear All</a>
+        </div>
+
+      </div>
+    </section>
+  </form>
+</div>
+
+<!-- filter-pulse End -->
+
+
+  <!-- collection all images  -->
+  <div class="page-width">
+    <div class="flex flex-wrap ">
+      {%- for product in collection.products -%}
+        <div style="padding:10px">
+          <img src="{{- product.featured_image | img_url: '450x550' -}}">
+          <p class="text-left text-2xl ">
+            {{- product.type -}}
+          </p>
+          <p>
+            {{- product.price | money -}}
+          </p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

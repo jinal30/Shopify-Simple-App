@@ -1,0 +1,137 @@
+<div id="DrawerMenu" class="mobile-menu mobile-menu--left">
+  <div class="menu_drawer-close">
+    <button class="menu-close-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-x"
+        aria-hidden="true">
+        <line
+          x1="18"
+          y1="6"
+          x2="6"
+          y2="18"></line>
+        <line
+          x1="6"
+          y1="6"
+          x2="18"
+          y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="sub_nav_bar">
+    <ul>
+      {%- for link in menu.links -%}
+        {% liquid assign linkTitle = link.title | handleize
+            assign has_dropdown = false
+            assign is_megamenu = false
+            if link.links != blank
+                assign has_dropdown = true
+            endif
+            for block in section.blocks
+            if linkTitle contains block.settings.collection
+               assign is_megamenu = true
+            endif
+          endfor
+        %}
+
+      
+        {%- if has_dropdown or is_megamenu -%}
+          <li class=" relative menu--open">
+            <a href="{{ link.url }}" class="text-xs flex items-center uppercase hover:opacity-75 hover:underline text-black">
+              {{ link.title }}
+
+            </a>
+            {%- if has_dropdown or is_megamenu -%}
+            <span class=" Collapsible__Plus">
+              
+            </span>
+          {%- endif -%}
+    
+           
+            {%- if is_megamenu -%}
+              {%- for block in section.blocks -%}
+                {%- if linkTitle contains block.settings.collection -%}
+                  {% if block.type contains 'mega-menu' %}
+                    <div class="hidden mega_menu  text-black bg-white">
+                      <div class="container mega_menu">
+                        <div class="max-w-7xl mx-auto grid grid-cols-4 gap-6">
+                          {%- if block.settings.title != blank -%}
+                            <div class="space-y-3 top-0 ml-5">
+                              <p class=" text-sm">{{ block.settings.title }}</p>
+                              
+                            </div>
+                          {%- endif -%}
+                          <p class="text-sm ">
+                            {{ block.settings[title] }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  {%- elsif block.type contains 'list_item' -%}
+                    <div class=" hidden mega_menu text-black bg-white pl-5">
+                      <div class="container">
+                        <div class="flex felx-wrap justify-between mx-auto ">
+                          <div class="w-full">
+                            {%- for megaLink in linklists[block.settings.menu].links -%}
+                              <div>
+                                <p class="text-8 ">{{ megaLink.title }}</p>
+                                {%- if megaLink.links != blank -%}
+                                  <div
+                                    class="text-xs">
+                                    {%- for mega_child_link in megaLink.links -%}
+                                      {%- liquid
+                                  assign lang_code_string = request.locale.iso_code | prepend: '/'
+                                    assign imageEnabled = false
+                                    if mega_child_link.url contains 'collections'
+                                      assign subcollection_handle = mega_child_link.url | remove: '/collections/' | remove: lang_code_string
+                                      assign image = collections[subcollection_handle].image | img_url: '200x'
+                                      assign subcollection_drop = collections[subcollection_handle]
+                                      if subcollection_drop.image
+                                        assign imageEnabled = true
+                                      endif
+                                      elsif mega_child_link.url contains 'products'
+                                      assign subcollection_handle = mega_child_link.url | remove: '/products/'  | remove: lang_code_string
+                                      assign image = all_products[subcollection_handle].featured.media.preview_image | img_url: '200x '
+                                      assign subcollection_drop =  all_products[subcollection_handle]
+                                      if subcollection_drop.featured.media
+                                        assign imageEnabled = true
+                                      endif
+                                    endif
+                                    -%}
+                                     
+                                    {%- endfor -%}
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            {%- endfor -%}
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+            
+            {% endif %}
+          </li>
+        {%- else -%}
+          <li>
+            <a href="{{ link.url }}">
+              {{ link.title }}
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+     </ul>
+     
+  </div>
+</div>

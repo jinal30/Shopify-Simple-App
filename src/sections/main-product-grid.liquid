@@ -1,0 +1,56 @@
+<div>
+  {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+    <div
+      aria-labelledby="verticalTitle"
+      class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}"
+      id="main-collection-filters"
+      data-id="{{ section.id }}">
+      {% render 'filters' 
+       , results: collection,
+       enable_filtering: section.settings.enable_filtering,
+       enable_sorting: section.settings.enable_sorting,
+       filter_type: section.settings.filter_type %}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+  {
+    "name": "product-grid",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_filtering",
+        "default": true,
+        "label": "Enable filtering"
+      }, {
+        "type": "select",
+        "id": "filter_type",
+        "default": "horizontal",
+        "label": "Desktop filter layout",
+        "options": [
+          {
+            "value": "horizontal",
+            "label": "horizontal"
+          }, {
+            "value": "vertical",
+            "label": "vertical"
+          }, {
+            "value": "drawer",
+            "label": "drawer"
+          }
+        ]
+      }, {
+        "type": "checkbox",
+        "id": "enable_sorting",
+        "default": true,
+        "label": "Enable sorting"
+      }
+    ],
+    "presets": [
+      {
+        "name": "product-grid"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,84 @@
+{% liquid
+  assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
+  assign img_url = block.settings.block_image | img_url : '1x1' | replace: '_1x1.', '_{width}x.'
+   
+%}
+<div>
+  <div class="page-width">
+    <div class="flex items-center">
+      <div class="w-1/2 relative ">
+        {% if section.settings.image != blank %}
+          <img class="w-9/12" src="{{ section.settings.image | img_url: 'master' }}">
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {% endif %}
+
+        {% for block in section.blocks %}
+          <span
+            class="shop-dot"
+            style="left: {{ block.settings.Vertical_dot }}%; top: {{ block.settings.horizontal_dot }}%"
+            data-product-index="{{ forloop.index0 }}"></span>
+        {% endfor %}
+      </div>
+      <div
+        class="w-1/4"
+        data-section-type="slideshow-section"
+        id="product_silder"
+        class=" relative">
+        {% for block in section.blocks %}
+          {%  liquid 
+            assign product = all_products[block.settings.product] 
+          %}
+
+          <div class="w-full">
+            <img src="{{ product.featured_image | img_url: 'master' }}">
+            <span>{{ product.title }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Featured Product",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }, {
+        "type": "checkbox",
+        "id": "show_sku",
+        "label": "Show SKU"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "product"
+          }, {
+            "type": "text",
+            "id": "Vertical_dot",
+            "label": "Vertical Align"
+          }, {
+            "type": "text",
+            "id": "horizontal_dot",
+            "label": "horizontal Align"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Product"
+      }
+    ]
+  }
+{% endschema %}

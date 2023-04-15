@@ -43,17 +43,14 @@
     <div class="loaded w-full">
       <div class="relative slider-img">
         {%- if block.settings.image != blank -%}
-          <img
-            class="hidden{% if has_mobile_image %} md:block{% endif %}"
-            src="{{ block.settings.image | img_url: 'master' }}"
-            alt="{{ block.settings.image.alt | escape }}">
-
+          <img class="hidden{% if has_mobile_image %} md:block{% endif %}"src="{{ block.settings.image | img_url: 'master' }}"alt="{{ block.settings.image.alt | escape }}">
+          <!--
           <div class="small-silder">
-            <div>
-              <img src="{{ block.settings.middle_block_image | img_url: 'master' }}" alt="{{ block.settings.middle_block_image.alt | escape }}">
-            </div>
+          <div>
+          <img src="{{ block.settings.middle_block_image | img_url: 'master' }}" alt="{{ block.settings.middle_block_image.alt | escape }}">
           </div>
-
+          </div>
+          -->
           {%- if has_mobile_image -%}
             {% assign mobile_img_url = block.settings.mobile_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
             {%- if block.settings.mobile_image != blank -%}
@@ -80,7 +77,7 @@
                   <p class="md:pt-3 tracking-wider">{{ block.settings.subheading }}</p>
 
                   {% if silde_link %}
-                    <div class="md:text-black md:bg-white py-2 px-3 md:pt-3 text-center tracking-widest" style="width: fit-content;">
+                    <div class=" bg-white text-black py-2 px-3 md:pt-3 text-center tracking-widest" style="width: fit-content;">
                       {{ block.settings.link_button }}
                     </div>
                   {% endif %}
