@@ -6,25 +6,31 @@
                 "a78309a1-6c05-4004-a4e2-45e7deb27b44": {
                     "type": "image",
                     "settings": {
-                        "title": "hello Champ",
+                        "title": "SPRING \nSTYLE",
                         "subheading": "Code WIth Harry",
-                        "image": "shopify:\/\/shop_images\/6.jpg",
+                        "image": "shopify:\/\/shop_images\/dress-mobile.webp",
                         "link": "",
                         "text_align": "items-center",
-                        "text_size": 46,
-                        "text_mobile_size": 32
+                        "text_size": 112,
+                        "text_mobile_size": 32,
+                        "mobile_image": "shopify:\/\/shop_images\/slider.jpg",
+                        "link_text": "shopify:\/\/collections",
+                        "link_button": "SHOP NOW"
                     }
                 },
                 "1d2c81b4-9154-444b-9ee7-77482c57b2c8": {
                     "type": "image",
                     "settings": {
-                        "title": "Welcome the earth",
+                        "title": "SUMMER VIBES",
                         "subheading": "And optional subtext",
-                        "image": "shopify:\/\/shop_images\/slider.jpg",
+                        "image": "shopify:\/\/shop_images\/woven_greenhouse_sg-20_15493a52-52f3-4708-a305-a8a9dec823b7.webp",
                         "link": "",
-                        "text_align": "items-center justify-center",
-                        "text_size": 50,
-                        "text_mobile_size": 30
+                        "text_align": "items-center",
+                        "text_size": 112,
+                        "text_mobile_size": 30,
+                        "mobile_image": "shopify:\/\/shop_images\/6.jpg",
+                        "link_text": "",
+                        "link_button": "SHOP NOW"
                     }
                 }
             },
@@ -34,7 +40,7 @@
             ],
             "settings": {
                 "title": "Expectional",
-                "color_text": "#dd1d1d"
+                "color_text": "#ffffff"
             }
         },
         "ab806b25-92b0-417c-a877-d26ec9171eb4": {
@@ -90,10 +96,186 @@
                 "warning_msg_collection": "SELECTED COLLECTION IS NOT EXISTS",
                 "width": "wide"
             }
+        },
+        "6eadb050-8f7b-4952-9a31-9e92730833e5": {
+            "type": "text-with-images",
+            "blocks": {
+                "ca39c6af-a079-459c-8a12-178de1b66a27": {
+                    "type": "image",
+                    "settings": {
+                        "show_img": true,
+                        "image": "shopify:\/\/shop_images\/81k-ftniGTL._SL1200.jpg",
+                        "image_shape_size": "none",
+                        "heading_text": "40% Off May’s Faux Bois Planters",
+                        "rich_text": "<p>Accent your living space with the natural beauty of our favorite lightweight planter in three versatile sizes perfect for indoors and out.<\/p>",
+                        "btn_label_url": "optional",
+                        "btn_link_url": "shopify:\/\/pages\/about",
+                        "text_aline": "item-center text-center"
+                    }
+                },
+                "9320256e-40b6-4a5d-9b95-7ff605aae90c": {
+                    "type": "image",
+                    "settings": {
+                        "show_img": false,
+                        "image": "shopify:\/\/shop_images\/img_0431.jpg",
+                        "image_shape_size": "none",
+                        "heading_text": "Up to 50% Off Kitchen Essentials",
+                        "rich_text": "<p>Equip your cooking spaces with quality, high performance tools for prepping delicious home cooked meals with precision.<\/p>",
+                        "btn_label_url": "optional",
+                        "btn_link_url": "shopify:\/\/pages\/about",
+                        "text_aline": "item-center text-center"
+                    }
+                },
+                "d1d52617-60c3-4f0f-9e97-7223ce6d8798": {
+                    "type": "image",
+                    "settings": {
+                        "show_img": false,
+                        "image": "shopify:\/\/shop_images\/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
+                        "image_shape_size": "none",
+                        "heading_text": "40% Off May’s Faux Bois Planters",
+                        "rich_text": "<p>Accent your living space with the natural beauty of our favorite lightweight planter in three versatile sizes perfect for indoors and out.<\/p>",
+                        "btn_label_url": "Optional",
+                        "btn_link_url": "shopify:\/\/pages\/about",
+                        "text_aline": "item-center text-center"
+                    }
+                }
+            },
+            "block_order": [
+                "ca39c6af-a079-459c-8a12-178de1b66a27",
+                "9320256e-40b6-4a5d-9b95-7ff605aae90c",
+                "d1d52617-60c3-4f0f-9e97-7223ce6d8798"
+            ],
+            "settings": {
+                "title": "Image With Text",
+                "header_size": "text-3xl font-bold dark:text-white",
+                "text_align": "items-center justify-center",
+                "mega_products": false,
+                "color_bg": ""
+            }
+        },
+        "f19141c5-2d62-4e9d-bf07-dc09ab3b9c76": {
+            "type": "rich-text",
+            "blocks": {
+                "a8ce7389-28e0-4c0e-8185-3159784ce694": {
+                    "type": "header",
+                    "settings": {
+                        "rich_heading_text": "Heading-Text",
+                        "header_size": "text-3xl font-bold dark:text-white"
+                    }
+                },
+                "065c0d04-9f3d-41a0-a1fb-896e74a0e705": {
+                    "type": "text",
+                    "settings": {
+                        "text_checkbox": true,
+                        "text": "<p>Equip your cooking spaces with quality, high performance tools for prepping delicious home cooked meals with precision. Accent your living space with the natural beauty of our favorite lightweight planter in three versatile sizes perfect for indoors and out.<\/p>",
+                        "text_size": "text-lg font-normal"
+                    }
+                },
+                "5d34ad58-5cc9-40a3-bd00-91976c5f7705": {
+                    "type": "button",
+                    "settings": {
+                        "btn_link": "",
+                        "link_text": "Button",
+                        "btn_color": "#1d1818",
+                        "btn_text_color": "#fcf8f8"
+                    }
+                }
+            },
+            "block_order": [
+                "a8ce7389-28e0-4c0e-8185-3159784ce694",
+                "065c0d04-9f3d-41a0-a1fb-896e74a0e705",
+                "5d34ad58-5cc9-40a3-bd00-91976c5f7705"
+            ],
+            "settings": {
+                "content_text": "item-center text-center",
+                "narrow_checkbox": false,
+                "rich_text_color": "#f1dede",
+                "section-divider": false
+            }
+        },
+        "5b9bb12d-c4f5-4dcd-8540-30341e25d2ed": {
+            "type": "Collection",
+            "blocks": {
+                "0cd56797-684f-4c90-938b-31675aa9bfa1": {
+                    "type": "header",
+                    "settings": {
+                        "collection": "dokia"
+                    }
+                },
+                "94017341-4f9f-44bc-ac4e-a89608020256": {
+                    "type": "header",
+                    "settings": {
+                        "collection": "matte-pendal-butti"
+                    }
+                },
+                "61508ef4-a3b5-4e91-b645-804838e143f3": {
+                    "type": "header",
+                    "settings": {
+                        "collection": "mina-pendal-butti"
+                    }
+                },
+                "21e9b399-ab15-425d-877f-cb385d6c55bf": {
+                    "type": "header",
+                    "settings": {
+                        "collection": "pendal-butti"
+                    }
+                },
+                "34818d9d-02b4-4ca3-b83c-a570c5a4461e": {
+                    "type": "header",
+                    "settings": {
+                        "collection": "mangalsutra"
+                    }
+                }
+            },
+            "block_order": [
+                "0cd56797-684f-4c90-938b-31675aa9bfa1",
+                "94017341-4f9f-44bc-ac4e-a89608020256",
+                "61508ef4-a3b5-4e91-b645-804838e143f3",
+                "21e9b399-ab15-425d-877f-cb385d6c55bf",
+                "34818d9d-02b4-4ca3-b83c-a570c5a4461e"
+            ],
+            "settings": {
+                "title": "The Best of Design by May",
+                "collection_header_size": "text-3xl font-normal",
+                "collection_header_position": "item-left text-left"
+            }
+        },
+        "d9a8d655-d973-4060-9a4e-f72e5d8338a1": {
+            "type": "featured-product",
+            "blocks": {
+                "69cc8fdc-2fe8-4edc-bae7-ed77c5c86662": {
+                    "type": "product",
+                    "settings": {
+                        "product": "mangalsutra-with-earrings-vmss1080g",
+                        "Vertical_dot": "40",
+                        "horizontal_dot": "50"
+                    }
+                },
+                "d972420a-787e-4fb7-ac34-1afa95315409": {
+                    "type": "product",
+                    "settings": {
+                        "product": "mangalsutra-with-earrings-vmss1068g",
+                        "Vertical_dot": "20",
+                        "horizontal_dot": "20"
+                    }
+                }
+            },
+            "block_order": [
+                "69cc8fdc-2fe8-4edc-bae7-ed77c5c86662",
+                "d972420a-787e-4fb7-ac34-1afa95315409"
+            ],
+            "settings": {
+                "image": "shopify:\/\/shop_images\/img_0431.jpg",
+                "show_sku": false
+            }
         }
     },
     "order": [
         "aa208877-b564-4de4-90a2-e63840b62017",
-        "ab806b25-92b0-417c-a877-d26ec9171eb4"
+        "ab806b25-92b0-417c-a877-d26ec9171eb4",
+        "6eadb050-8f7b-4952-9a31-9e92730833e5",
+        "f19141c5-2d62-4e9d-bf07-dc09ab3b9c76",
+        "5b9bb12d-c4f5-4dcd-8540-30341e25d2ed",
+        "d9a8d655-d973-4060-9a4e-f72e5d8338a1"
     ]
 }

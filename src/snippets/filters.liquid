@@ -6,118 +6,85 @@
     assign results_url = results.url
   else
     assign terms = results.terms | escape
-    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
   endif
 %}
 
-  <div >
-  
-
-<!-- filter-pulse -->
+  <div class="flex">
 
 
+  <!-- filter-pulse -->
 
-<!-- pulse-filter -->
-<div class="page-width">
-  <form>
-    <section class="filter-section" id="Collection">
-     
-      <div class="pulse-filter">
-        {% for filter in collection.filters %}
-        <details class="filter-main details-has-popup-open">
-          <summary class="" aria-expanded="false">
-            <li class="filter-icon-label">{{filter.label}}
-              {% if filter.active_values.size > 0 %}
-              <span>({{ filter.active_values.size }})</span>
-              {% endif %}
-            </li>
-          </summary>
-          <div class="filter-group-fill">
-            <div class="filter-group-first">
-              <span class="filter-header-selected">Selected({{filter.values.size}})</span>
-              <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</a>
-            </div>
+  <div class="page-width">
+    <facet-filters-form class="facets small-hide">
+      <form>
+        {%- if filter_type == 'vertical' -%}
+          <span class="facets__selected no-js-hidden{% if filter.active_values.size == 0 %} hidden{% endif %}">
+            ({{ filter.active_values.size }})</span>
+        {%- endif -%}
+        {% if enable_filtering %}
+          <div id="FacetsWrapperDesktop">
+            {% for filter in results.filters %}
+              {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+              <details id="Details-{{ forloop.index }}-{{ section.id }}" data-index="{{ forloop.index }}">
+                <summary class="py-5">{{ filter.label | escape }}
+                </summary>
+              </details>
 
-            {% case filter.type %}
-            {% when 'list' %}
-            <ul class="filter-group-list">
-              {% for filter_values in filter.values %}
-              <label class="filter-values-show">
-                <input type="checkbox"
-                       class="filter-checkbox"
-                       name="{{ filter_values.param_name }}"
-                       value="{{ filter_values.value }}"
-                       {% if filter_values.active %}checked{% endif %}
-                       >
-                {{filter_values.label}}
-              </label>
-              {% endfor %}
-            </ul>
-
-            {% when 'price_range' %}
-            <div class="prise-group filter-group-list">
-              <span>{{ cart.currency.symbol }}</span>
-              <div class="prise-front">
-                <input type="number" name="{{filter.min_value.param_name}}"
+              {% case filter.type %}
+                {% when 'list' %}
+                <div>
+                  {% for filter_values in filter.values %}
+                    <label for="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}">
+                      <input
+                        type="checkbox"
+                        name="{{ filter_values.param_name}}"
                         class="filter-checkbox"
-                       {% if filter.min_value.value -%}
-                       value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
-                       {%- endif %}
-                   placeholder="From"
-                       max="0"
-                       max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                       >
-              </div>
-              <span>{{ cart.currency.symbol }}</span>
-              <div class="prise-front">
-                <input type="number" name="{{filter.max_value.param_name}}"
-                        class="filter-checkbox"
-                       value="{{filter.max_value.value | money_without_currency | replace: ',', '' }}"
-                       placeholder="To"
-                       min="0"
-                       min="{{ filter.range_max }}"
-                       >
-              </div>
-            </div>
-            {% endcase %}
+                        value=" {{ filter_values.value }}"
+                        {% if filter_values.active %}checked{% endif %}
+                        {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                      <span aria-hidden="true">{{ filter_values.label }} ({{ filter_values.count }})</span>
+                    </label>
+                  {% endfor %}
+                </div>
+
+
+
+                {% when 'price_range' %}
+                <div class="prise-group filter-group-list flex">
+                  <span>{{ cart.currency.symbol }}</span>
+                  <div class="prise-front">
+                    <input
+                      type="number"
+                      name="{{filter.min_value.param_name}}"
+                      class="filter-checkbox"
+                      {% if filter.min_value.value -%}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{%- endif %}placeholder="From"max="0"max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                  </div>
+                  <span>{{ cart.currency.symbol }}</span>
+                  <div class="prise-front">
+                    <input
+                      type="number"
+                      name="{{filter.max_value.param_name}}"
+                      class="filter-checkbox"
+                      value="{{filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                      placeholder="To"
+                      min="0"
+                      min="{{ filter.range_max }}">
+                  </div>
+                </div>
+
+              {% endcase %}
+            {% endfor %}
           </div>
-        </details>
-        {% endfor %}
-        <div class="filter-clear">
-          {% for filter in collection.filters %}
-            {%- if filter.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
-          {% if filter.type == "price_range" %}
-          {% if filter.min_value.value != nil or filter.max_value.value != nil %}
-          <a href="{{filter.url_to_remove}}">
-            {% assign min_value = filter.min_value.value | default:0 %}
-            {% assign max_value = filter.max_value.value | default:filter.range_max %}
-            {{ min_value | money }} - {{ max_value | money }}
-          </a>
-          {% endif %}
-          {% for filter_value in filter.active.value  %}
+        {% endif %}
+      </form>
+    </facet-filters-form>
+  </div>
 
-          <a class="active-filters__remove-filter" href="{{ collection.url }}">
-            {{ filter.label }}: {{ filter_value.label }}
-          </a>
-
-          {% endfor %}
-          {% endif %}
-
-          {% endfor %}
-          <a href="{{collection.url}}">Clear All</a>
-        </div>
-
-      </div>
-    </section>
-  </form>
-</div>
-
-<!-- filter-pulse End -->
 
 
   <!-- collection all images  -->
   <div class="page-width">
-    <div class="flex flex-wrap ">
+    <div class="flex flex-wrap" id="collection-grid">
       {%- for product in collection.products -%}
         <div style="padding:10px">
           <img src="{{- product.featured_image | img_url: '450x550' -}}">

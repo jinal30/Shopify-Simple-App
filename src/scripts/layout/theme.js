@@ -25,6 +25,7 @@ import Flickity from "flickity";
 //     e.stopPropagation();
 // });
 
+// import '../layout/header'
 var profile = document.querySelector(".dropbox");
 window.onclick = function(event) {
     profile.style.display = "none";
@@ -312,6 +313,8 @@ dotElement.forEach((dots) => {
         slider.select(parseInt(this.dataset.productIndex));
     });
 });
+
+
 document.querySelector('.small-menu').addEventListener('click', (e) => {
     document.querySelector('.mobile-menu').classList.add("mobile-menu--is-open");
     console.log("open..............", document.querySelector('.mobile-menu').classList.add("mobile-menu--is-open"))
@@ -354,89 +357,116 @@ window.onclick = function(event) {
     menu.style.display = "none";
 }
 
-// filter stock  in collection page
+// collection page filter
+// var filterCheckBoxes = document.querySelectorAll('.filter-checkbox');
+
+// for (var i = 0; i < filterCheckBoxes.length; i++) {
+//     filterCheckBoxes[i].addEventListener('change', function(e) {
+//         var formData = new FormData(this.closest('form'));
+
+//         var activeCheckboxes = formData.getAll(this.name);
+
+//         var queryParams = new URLSearchParams(formData).toString();
+//         var newUrl = window.location.pathname + '?' + queryParams;
+//         console.log('newUrl========>', newUrl)
+//         alert("hello");
+
+//         fetch(newUrl)
+//             .then(function(response) {
+//                 return response.text();
+//             })
+//             .then(function(responce) {
+//                 var parser = new DOMParser();
+//                 var newDoc = parser.parseFromString(responce, "text/html");
+//                 var newProductsWrapper = newDoc.querySelector("#Collection");
+//                 var newProductsHtml = newProductsWrapper.innerHTML;
+//                 document.querySelector("#Collection").innerHTML = newProductsHtml;
+//             })
+//             .catch(function(err) {
+//                 console.error(err);
+//             });
+//     });
+// }
+
 // class FacetFiltersForm extends HTMLElement {
 //     constructor() {
 //         super();
 //         this.onActiveFilterClick = this.onActiveFilterClick.bind(this);
 
+//         this.debouncedOnSubmit = debounce((event) => {
+//             this.onSubmitHandler(event);
+
+//         }, 500);
+
+//         const facetForm = this.querySelector('form');
+//         facetForm.addEventListener('input', this.debouncedOnSubmit.bind(this));
+
 //         const facetWrapper = this.querySelector('#FacetsWrapperDesktop');
 //         if (facetWrapper) facetWrapper.addEventListener('keyup', onKeyUpEscape);
+//     }
+
+//     static setListeners() {
+//         const onHistoryChange = (event) => {
+//             const searchParams = event.state ? event.state.searchParams : FacetFiltersForm.searchParamsInitial;
+//             if (searchParams === FacetFiltersForm.searchParamsPrev) return;
+//             FacetFiltersForm.renderPage(searchParams, null, false);
+//         }
+//         window.addEventListener('popstate', onHistoryChange);
+//     }
+
+//     static updateURLHash(searchParams) {
+//         history.pushState({ searchParams }, '', `${window.location.pathname}${searchParams && '?'.concat(searchParams)}`);
+//     }
+
+//     static getSections() {
+//         return [{
+//             section: document.getElementById('collection-grid').dataset.id,
+//         }]
+//     }
+
+//     createSearchParams(form) {
+//         const formData = new FormData(form);
+//         return new URLSearchParams(formData).toString();
+//     }
+
+//     onSubmitForm(searchParams, event) {
+//         FacetFiltersForm.renderPage(searchParams, event);
+//     }
+
+//     onSubmitHandler(event) {
+//         event.preventDefault();
+//         const sortFilterForms = document.querySelectorAll('facet-filters-form form');
+//         if (event.srcElement.className == 'mobile-facets__checkbox') {
+//             const searchParams = this.createSearchParams(event.target.closest('form'))
+//             this.onSubmitForm(searchParams, event)
+//         } else {
+//             const forms = [];
+//             const isMobile = event.target.closest('form').id === 'FacetFiltersFormMobile';
+
+//             sortFilterForms.forEach((form) => {
+//                 if (!isMobile) {
+//                     if (form.id === 'FacetSortForm' || form.id === 'FacetFiltersForm' || form.id === 'FacetSortDrawerForm') {
+//                         const noJsElements = document.querySelectorAll('.no-js-list');
+//                         noJsElements.forEach((el) => el.remove());
+//                         forms.push(this.createSearchParams(form));
+//                     }
+//                 } else if (form.id === 'FacetFiltersFormMobile') {
+//                     forms.push(this.createSearchParams(form));
+//                 }
+//             });
+//             this.onSubmitForm(forms.join('&'), event)
+//         }
 //     }
 //     onActiveFilterClick(event) {
 //         event.preventDefault();
 //         FacetFiltersForm.toggleActiveFacets();
 //         const url = event.currentTarget.href.indexOf('?') == -1 ? '' : event.currentTarget.href.slice(event.currentTarget.href.indexOf('?') + 1);
 //         FacetFiltersForm.renderPage(url);
+
 //     }
 // }
-
-// function onKeyUpEscape(event) {
-//     if (event.code.toUpperCase() !== 'ESCAPE') return;
-
-//     var openDetailsElement = event.target.closest('details[open]');
-//     if (!openDetailsElement) return;
-
-//     var summaryElement = openDetailsElement.querySelector('summary');
-//     openDetailsElement.removeAttribute('open');
-//     summaryElement.setAttribute('aria-expanded', false);
-//     summaryElement.focus();
-// }
-
-
-
 // FacetFiltersForm.filterData = [];
-// // filter price in collection page
-// class PriceRange extends HTMLElement {
-//     constructor() {
-//         super();
-//         this.querySelectorAll('input').forEach(element => element.addEventListener('change', this.onRangeChange.bind(this)));
-//         this.setMinAndMaxValues();
-//     }
-
-//     onRangeChange(event) {
-//         this.adjustValidValues(event.currentTarget);
-//         this.setMinAndMaxValues();
-//     }
-//     setMinAndMaxValues() {
-//         const inputs = this.querySelectorAll('input');
-//         const minInput = inputs[0];
-//         const maxInput = inputs[1];
-//         if (maxInput.value) minInput.setAttribute('max', maxInput.value);
-//         if (minInput.value) maxInput.setAttribute('min', minInput.value);
-//         if (minInput.value === '') maxInput.setAttribute('min', 0);
-//         if (maxInput.value === '') minInput.setAttribute('max', maxInput.getAttribute('max'));
-//     }
-
-//     adjustValidValues(input) {
-//         const value = Number(input.value);
-//         const min = Number(input.getAttribute('min'));
-//         const max = Number(input.getAttribute('max'));
-
-//         if (value < min) input.value = min;
-//         if (value > max) input.value = max;
-//     }
-// }
-// customElements.define('price-range', PriceRange);
-
-
-theme.collectionFilter = (function() {
-
-    var selectors = {
-        filterCheckBox: '.filter-checkbox'
-    };
-
-    $(selectors.filterCheckBox).click(function(e) {
-        var data = $(this).closest('form').serialize();
-        var newUrl = window.location.pathname + '?' + data;
-
-        $.get({
-            url: newUrl,
-            success: function(responce) {
-                var newProductsWrapper = $(responce).find("#Collection");
-                var newProductsHtml = newProductsWrapper.html();
-                $("#Collection").html(newProductsHtml);
-            }
-        })
-    })
-})();
+// FacetFiltersForm.searchParamsInitial = window.location.search.slice(1);
+// FacetFiltersForm.searchParamsPrev = window.location.search.slice(1);
+// customElements.define('facet-filters-form', FacetFiltersForm);
+// FacetFiltersForm.setListeners();

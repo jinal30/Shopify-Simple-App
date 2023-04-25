@@ -3,12 +3,22 @@
         "banner": {
             "type": "main-collection-banner",
             "settings": {
+                "collection_description_show": false,
                 "collection_image_show": true,
-                "collection_back_color": "white"
+                "collection_back_color": "#ffffff"
+            }
+        },
+        "bb062101-8c68-4b22-ba33-3aed6e0a3515": {
+            "type": "main-product-grid",
+            "settings": {
+                "enable_filtering": true,
+                "filter_type": "vertical",
+                "enable_sorting": true
             }
         }
     },
     "order": [
-        "banner"
+        "banner",
+        "bb062101-8c68-4b22-ba33-3aed6e0a3515"
     ]
 }

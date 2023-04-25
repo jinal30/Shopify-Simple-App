@@ -1,96 +1,103 @@
 [{
-    "name": "theme_info",
-    "theme_name": "Packer blank theme",
-    "theme_version": "1.0.9",
-    "theme_author": "Eric Hayes",
-    "theme_documentation_url": "https://github.com/hayes0724/packer-blank-theme",
-    "theme_support_url": "https://github.com/hayes0724/packer-blank-theme/issues"
-}, {
-    "name": "Cart",
-    "settings": [{
-            "type": "header",
-            "content": "Cart"
-        },
-        {
-            "type": "select",
-            "id": "cart_type",
-            "label": "Cart type",
-            "default": "drawer",
-            "options": [{
-                    "value": "page",
-                    "label": "Page"
-                },
-                {
-                    "value": "drawer",
-                    "label": "Drawer"
-                }
-            ]
-        },
-        {
-            "type": "select",
-            "id": "cart_icon",
-            "label": "Cart icon",
-            "default": "bag-minimal",
-            "options": [{
-                    "value": "bag",
-                    "label": "Bag"
-                },
-                {
-                    "value": "bag-minimal",
-                    "label": "Minimal bag"
-                },
-                {
-                    "value": "cart",
-                    "label": "Cart"
-                }
-            ]
-        },
-        {
-            "name": "color",
-            "settings": [{
-                "type": "color",
-                "id": "color_button",
-                "label": "Button",
-                "default": "#ffffff"
-            }]
-        },
-        {
-            "name": "Social Media",
-            "settings": [{
-                    "type": "header",
-                    "content": "Account"
-                },
-                {
-                    "type": "text",
-                    "id": "instra_id",
-                    "label": "Instagram"
-                }, {
-                    "type": "text",
-                    "id": "facebook_id",
-                    "label": "facebook"
-                }, {
-                    "type": "text",
-                    "id": "twitter_id",
-                    "label": "Twitter"
-                }, {
-                    "type": "text",
-                    "id": "pinterest_id",
-                    "label": "Pinterest"
-                }, {
-                    "type": "text",
-                    "id": "youtube_id",
-                    "label": "Youtube"
-                }, {
-                    "type": "text",
-                    "id": "tiktok_id",
-                    "label": "Tiktok"
-                }, {
-                    "type": "text",
-                    "id": "linked_id",
-                    "label": "Linked"
-                }
-            ]
-        }
-
-    ]
-}]
+        "name": "theme_info",
+        "theme_name": "Packer blank theme",
+        "theme_version": "1.0.9",
+        "theme_author": "Eric Hayes",
+        "theme_documentation_url": "https:\/\/github.com\/hayes0724\/packer-blank-theme",
+        "theme_support_url": "https:\/\/github.com\/hayes0724\/packer-blank-theme\/issues"
+    },
+    {
+        "name": "Cart",
+        "settings": [{
+                "type": "header",
+                "content": "Cart"
+            },
+            {
+                "type": "select",
+                "id": "cart_type",
+                "label": "Cart type",
+                "default": "drawer",
+                "options": [{
+                        "value": "page",
+                        "label": "Page"
+                    },
+                    {
+                        "value": "drawer",
+                        "label": "Drawer"
+                    }
+                ]
+            },
+            {
+                "type": "select",
+                "id": "cart_icon",
+                "label": "Cart icon",
+                "default": "bag-minimal",
+                "options": [{
+                        "value": "bag",
+                        "label": "Bag"
+                    },
+                    {
+                        "value": "bag-minimal",
+                        "label": "Minimal bag"
+                    },
+                    {
+                        "value": "cart",
+                        "label": "Cart"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "color",
+        "settings": [{
+            "type": "color",
+            "id": "color_button",
+            "label": "Button",
+            "default": "#880808"
+        }]
+    },
+    {
+        "name": "Social Media",
+        "settings": [{
+                "type": "header",
+                "content": "Account"
+            },
+            {
+                "type": "text",
+                "id": "instra_id",
+                "label": "Instagram"
+            },
+            {
+                "type": "text",
+                "id": "facebook_id",
+                "label": "facebook"
+            },
+            {
+                "type": "text",
+                "id": "twitter_id",
+                "label": "Twitter"
+            },
+            {
+                "type": "text",
+                "id": "pinterest_id",
+                "label": "Pinterest"
+            },
+            {
+                "type": "text",
+                "id": "youtube_id",
+                "label": "Youtube"
+            },
+            {
+                "type": "text",
+                "id": "tiktok_id",
+                "label": "Tiktok"
+            },
+            {
+                "type": "text",
+                "id": "linked_id",
+                "label": "Linked"
+            }
+        ]
+    }
+]
