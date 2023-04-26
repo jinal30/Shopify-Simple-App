@@ -567,11 +567,53 @@ span.Collapsible__Plus.menu--opened:after {
     text-align: end;
 }
 
-.facets__wrapper {
-    align-items: center;
-    align-self: flex-start;
-    grid-column: 1;
-    grid-row: 1;
+// filter css
+.facet-checkbox {
+    padding: 1rem 2rem 1rem 0;
+    flex-grow: 1;
+    position: relative;
     display: flex;
-    flex-wrap: wrap;
+    word-break: break-word;
+}
+
+.facet-checkbox input[type='checkbox'] {
+    position: absolute;
+    opacity: 1;
+    width: 1.6rem;
+    height: 1.6rem;
+    top: 0.7rem;
+    left: -0.4rem;
+    z-index: -1;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.facets__item label,
+.facets__item input[type='checkbox'] {
+    cursor: pointer;
+}
+
+.facet-checkbox .icon-checkmark {
+    visibility: hidden;
+    position: absolute;
+    left: 0.3rem;
+    z-index: 5;
+    top: 1.2rem;
+}
+
+.facets__summary {
+    color: black;
+    font-size: 1.4rem;
+    padding: 0 1.75rem 0 0;
+    margin-bottom: 1.5rem;
+}
+
+.facet-checkbox>svg {
+    background-color: white;
+    margin-right: 1.2rem;
+    flex-shrink: 0;
+}
+
+.facet-checkbox>input[type='checkbox']:checked~.icon-checkmark {
+    visibility: visible;
 }

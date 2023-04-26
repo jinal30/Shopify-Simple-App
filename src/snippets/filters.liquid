@@ -16,35 +16,62 @@
 
   <div class="page-width">
     <facet-filters-form class="facets small-hide">
-      <form>
-        {%- if filter_type == 'vertical' -%}
-          <span class="facets__selected no-js-hidden{% if filter.active_values.size == 0 %} hidden{% endif %}">
-            ({{ filter.active_values.size }})</span>
-        {%- endif -%}
+      <form id="FacetFiltersForm">
+      
         {% if enable_filtering %}
           <div id="FacetsWrapperDesktop">
             {% for filter in results.filters %}
               {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
               <details id="Details-{{ forloop.index }}-{{ section.id }}" data-index="{{ forloop.index }}">
-                <summary class="py-5">{{ filter.label | escape }}
-                </summary>
+                <summary class="facets__summary">{{ filter.label | escape }}</summary>
               </details>
 
               {% case filter.type %}
                 {% when 'list' %}
                 <div>
+                <fieldset class="facets-wrap parent-wrap">
                   {% for filter_values in filter.values %}
-                    <label for="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}">
+                    <div class="facets__item">
+                    <label for="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}" 
+                    class="facet-checkbox{% if filter_values.count == 0 and filter_values.active == false %} facet-checkbox--disabled{% endif %}">
                       <input
                         type="checkbox"
                         name="{{ filter_values.param_name}}"
                         class="filter-checkbox"
-                        value=" {{ filter_values.value }}"
+                        id="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}"
+                        value="{{ filter_values.value }}"
                         {% if filter_values.active %}checked{% endif %}
-                        {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                        {% if filter_values.count == 0 and filter_values.active == false %}disabled{% endif %}>
+                        <svg
+                        width="1.6rem"
+                        height="1.6rem"
+                        viewBox="0 0 16 16"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+                      </svg>
+
+                      <svg
+                        aria-hidden="true"
+                        class="icon icon-checkmark"
+                        width="1.1rem"
+                        height="0.7rem"
+                        viewBox="0 0 11 7"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      > 
+                        <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1"
+                          stroke="currentColor"
+                          stroke-width="1.75"
+                          stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
                       <span aria-hidden="true">{{ filter_values.label }} ({{ filter_values.count }})</span>
                     </label>
+                    </div>
                   {% endfor %}
+                  </fieldset>
                 </div>
 
 
