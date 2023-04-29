@@ -603,8 +603,7 @@ span.Collapsible__Plus.menu--opened:after {
 
 .facets__summary {
     color: black;
-    font-size: 1.4rem;
-    padding: 0 1.75rem 0 0;
+    font-size: 1.1rem;
     margin-bottom: 1.5rem;
 }
 
@@ -616,4 +615,68 @@ span.Collapsible__Plus.menu--opened:after {
 
 .facet-checkbox>input[type='checkbox']:checked~.icon-checkmark {
     visibility: visible;
+}
+
+@media only screen and (max-width:768px) {
+    .collection_list {
+        width: 50%;
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .small-hide {
+        visibility: hidden;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .mobile_filter {
+        display: block;
+    }
+}
+
+.mobile-facets__open {
+    text-align: left;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.mobile-facets__disclosure {
+    display: flex;
+}
+
+.disclosure-has-popup[open]>.facets__summary::before {
+    z-index: 2;
+}
+
+.mobile-facets__wrapper .disclosure-has-popup[open]>summary::before {
+    height: 100vh;
+    z-index: 3;
+}
+
+.js .disclosure-has-popup:not(.menu-opening) .mobile-facets__inner {
+    transform: translateX(105vw);
+}
+
+.mobile-facets__open-wrapper {
+    display: inline-block;
+}
+
+.menu-opening .mobile-facets__inner {
+    transform: translateX(0);
+}
+
+.custom_drawer {
+    position: fixed;
+    background-color: white;
+    width: 290px;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    right: 0;
 }

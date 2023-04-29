@@ -18,6 +18,7 @@ register('collection-template', {
         console.log('this---====>', this);
         collectionTemplate = this;
         this.FacetFiltersForm = this.container.querySelector('facet-filters-form');
+
         console.log('this.FacetFiltersForm=========>', this.FacetFiltersForm);
         this.init();
     },
@@ -44,6 +45,11 @@ register('collection-template', {
 
         const facetWrapper = this.container.querySelector('#FacetsWrapperDesktop');
         if (facetWrapper) facetWrapper.addEventListener('keyup', this.onKeyUpEscape);
+
+        this.querySelectorAll('summary').forEach(summary => summary.addEventListener('click', this.onSummaryClick.bind(this)));
+        alert("hello");
+        //this.querySelectorAll('button:not(.localization-selector)').forEach(button => button.addEventListener('click', this.onCloseButtonClick.bind(this)));
+
         // var tagBox = this.container.querySelectorAll('.facet-checkbox');
         // tagBox.forEach(tagvalue => {
         //     tagvalue.addEventListener('click', function(event) {
@@ -225,6 +231,41 @@ register('collection-template', {
             section: document.getElementById('main-collection-filters').dataset.id,
         }]
     },
+
+
+
+    onSummaryClick(event) {
+        alert("hey keyur....")
+        const summaryElement = event.currentTarget;
+        const detailsElement = summaryElement.parentNode;
+        const parentMenuElement = detailsElement.closest('.has-submenu');
+        const isOpen = detailsElement.hasAttribute('open');
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+        function addTrapFocus() {
+            trapFocus(summaryElement.nextElementSibling, detailsElement.querySelector('button'));
+            summaryElement.nextElementSibling.removeEventListener('transitionend', addTrapFocus);
+        }
+
+        if (detailsElement === this.mainDetailsToggle) {
+            if (isOpen) event.preventDefault();
+            isOpen ? this.closeMenuDrawer(event, summaryElement) : this.openMenuDrawer(summaryElement);
+
+            if (window.matchMedia('(max-width: 990px)')) {
+                document.documentElement.style.setProperty('--viewport-height', `${window.innerHeight}px`);
+            }
+        } else {
+            setTimeout(() => {
+                detailsElement.classList.add('menu-opening');
+                summaryElement.setAttribute('aria-expanded', true);
+                parentMenuElement && parentMenuElement.classList.add('submenu-open');
+                !reducedMotion || reducedMotion.matches ? addTrapFocus() : summaryElement.nextElementSibling.addEventListener('transitionend', addTrapFocus);
+            }, 100);
+        }
+    },
+
+
+
 
     // Shortcut function called when a section unloaded by the Theme Editor 'shopify:section:unload' event.
     onUnload: function() {

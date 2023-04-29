@@ -13,25 +13,28 @@
 
 
   <!-- filter-pulse -->
+ 
 
-  <div class="page-width">
-    <facet-filters-form class="facets small-hide">
+  <div class="w-1/5 pl-5">
+    <facet-filters-form class="facets small-hide ">
       <form id="FacetFiltersForm">
       
         {% if enable_filtering %}
           <div id="FacetsWrapperDesktop">
             {% for filter in results.filters %}
               {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
-              <details id="Details-{{ forloop.index }}-{{ section.id }}" data-index="{{ forloop.index }}">
-                <summary class="facets__summary">{{ filter.label | escape }}</summary>
-              </details>
-
+              
+              
               {% case filter.type %}
                 {% when 'list' %}
                 <div>
+                <details id="Details-{{ forloop.index }}-{{ section.id }}" data-index="{{ forloop.index }}">
+                  <summary class="facets__summary">
+                    {{ filter.label | escape }}
+                  </summary>
                 <fieldset class="facets-wrap parent-wrap">
                   {% for filter_values in filter.values %}
-                    <div class="facets__item">
+                    <div class="facets__item ">
                     <label for="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}" 
                     class="facet-checkbox{% if filter_values.count == 0 and filter_values.active == false %} facet-checkbox--disabled{% endif %}">
                       <input
@@ -71,13 +74,19 @@
                     </label>
                     </div>
                   {% endfor %}
-                  </fieldset>
-                </div>
+                </fieldset>
+              </details>
 
+            </div>
+             
 
 
                 {% when 'price_range' %}
-                <div class="prise-group filter-group-list flex">
+                <details id="Details-{{ forloop.index }}-{{ section.id }}" data-index="{{ forloop.index }}">
+                  <summary class="facets__summary">
+                    {{ filter.label | escape }}
+                  </summary>
+                <div class="prise-group filter-group-list ">
                   <span>{{ cart.currency.symbol }}</span>
                   <div class="prise-front">
                     <input
@@ -98,22 +107,82 @@
                       min="{{ filter.range_max }}">
                   </div>
                 </div>
-
+                </details>
               {% endcase %}
             {% endfor %}
+            
+            <div class=" facet-filters__label caption-large text-body">
+              <label for="SortBy">Sort by:</label>
+            
+            
+              <div class="select">
+                {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+                <select
+                  name="sort_by"
+                  class="facet-filters__sort select__select caption-large"
+                  id="SortBy"
+                  aria-describedby="a11y-refresh-page-message"
+                >
+                  {%- for option in results.sort_options -%}
+                    <option
+                      value="{{ option.value | escape }}"
+                      {% if option.value == sort_by %}
+                        selected="selected"
+                      {% endif %}
+                    >
+                      {{ option.name | escape }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            </div>
+
           </div>
         {% endif %}
       </form>
     </facet-filters-form>
+
+    <menu-drawer>
+      
+    </menu-drawer>
   </div>
 
-
+  <!-- mobile drawer -->
+  <div class="mobile_filter hidden">
+    <details class="mobile-facets__disclosure disclosure-has-popup">
+      <summary class="mobile-facets__open-wrapper focus-offset">
+      <span class="mobile-facets__open{% if filter_type == 'drawer' and enable_filtering == false %} medium-hide large-up-hide{% endif %}">
+          <svg
+            class="icon icon-filter"
+            aria-hidden="true"
+            focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path fill-rule="evenodd" d="M4.833 6.5a1.667 1.667 0 1 1 3.334 0 1.667 1.667 0 0 1-3.334 0ZM4.05 7H2.5a.5.5 0 0 1 0-1h1.55a2.5 2.5 0 0 1 4.9 0h8.55a.5.5 0 0 1 0 1H8.95a2.5 2.5 0 0 1-4.9 0Zm11.117 6.5a1.667 1.667 0 1 0-3.334 0 1.667 1.667 0 0 0 3.334 0ZM13.5 11a2.5 2.5 0 0 1 2.45 2h1.55a.5.5 0 0 1 0 1h-1.55a2.5 2.5 0 0 1-4.9 0H2.5a.5.5 0 0 1 0-1h8.55a2.5 2.5 0 0 1 2.45-2Z" fill="currentColor"/>
+          </svg>
+        <span class="mobile-facets__open-label button-label">
+          {%- if enable_filtering -%}
+              Filter
+          {%- endif -%}
+        </span>
+      </span>
+      </summary>
+      <facet-filters-form>
+        <form id="FacetFiltersFormMobile" class="mobile-facets">
+          <div class="custom_drawer gradient">
+          </div>
+        </form>
+      </facet-filters-form>
+    </details>
+  </div>
 
   <!-- collection all images  -->
-  <div class="page-width">
+  <div class="w-4/5">
     <div class="flex flex-wrap" id="collection-grid">
       {%- for product in collection.products -%}
-        <div style="padding:10px">
+        <div class="collection_list">
           <img src="{{- product.featured_image | img_url: '450x550' -}}">
           <p class="text-left text-2xl ">
             {{- product.type -}}

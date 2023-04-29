@@ -334,7 +334,7 @@ document.querySelector('.menu-close-btn').addEventListener('click', (e) => {
 
 
 
-// mobile-view-menu-bar
+// mobile-view-menu-bar in + and minus sign
 document.querySelector('.Collapsible__Plus').addEventListener('click', (e) => {
     if (e.target.classList.contains('menu--opened')) {
         e.target.classList.remove('menu--opened');
@@ -348,6 +348,7 @@ document.querySelector('.Collapsible__Plus').addEventListener('click', (e) => {
         })
         e.target.classList.add('menu--opened');
         e.target.closest('li').querySelector('.mega_menu').classList.remove('hidden');
+
     }
 
     e.stopPropagation();
@@ -356,6 +357,7 @@ var menu = document.querySelector(".mega_menu");
 window.onclick = function(event) {
     menu.style.display = "none";
 }
+
 
 // collection page filter
 // var filterCheckBoxes = document.querySelectorAll('.filter-checkbox');
