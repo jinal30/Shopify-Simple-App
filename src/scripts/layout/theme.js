@@ -29,7 +29,6 @@ import Flickity from "flickity";
 var profile = document.querySelector(".dropbox");
 window.onclick = function(event) {
     profile.style.display = "none";
-
 }
 
 // profile-popup

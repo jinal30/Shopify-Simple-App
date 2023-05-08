@@ -12,6 +12,4 @@
 import { load } from '@shopify/theme-sections';
 import '../sections/collection-template';
 
-
-
 load(['collection-template']);

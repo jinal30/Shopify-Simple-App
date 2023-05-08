@@ -680,3 +680,44 @@ span.Collapsible__Plus.menu--opened:after {
     top: 0;
     right: 0;
 }
+
+.mobile-facets__header {
+    border-bottom: 0.2rem solid lightgrey;
+    padding: 0.1rem 0.1rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.mobile-facets {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mobile-facets__close {
+    display: none;
+    position: fixed;
+    top: 0.7rem;
+    right: 1rem;
+    width: 4.2rem;
+    height: 4.2rem;
+    z-index: 101;
+    opacity: 1;
+    transition: opacity var(--duration-short) ease;
+}
+
+.mobile-facets__close svg {
+    width: 2.2rem;
+}
+
+details[open] .mobile-facets__close {
+    display: block;
+    justify-content: flex-end;
+    opacity: 1;
+}

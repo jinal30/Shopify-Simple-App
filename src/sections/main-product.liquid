@@ -1,0 +1,30 @@
+<div class="page-width">
+  <div class="w-1/2">
+    <img src="{{ product.featured_image | img_url: 'master' }}">
+  </div>
+  <div class="w-1/2 product_page">
+    heyy
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "product",
+    "settings": [],
+    "blocks": [
+      {
+        "name": "Text",
+        "type": "text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
