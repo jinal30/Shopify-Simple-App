@@ -8,7 +8,4 @@
  * @file template.product.css
  *
  */
-import "../../styles/product.css";
-import { load } from '@shopify/theme-sections';
-
-load([]);
+document.getElementsByClassName("js-qty__adjust").onclick = function() { alert('hello') };

@@ -5,6 +5,11 @@
  *
  * @namespace product
  * @file vendors@template.product.js
- * @file template.product.js
+ * @file template.product.css
  *
  */
+
+import "../../styles/product.scss";
+import { load } from '@shopify/theme-sections';
+
+load([]);
