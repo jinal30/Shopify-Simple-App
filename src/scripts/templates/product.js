@@ -11,5 +11,7 @@
 
 import "../../styles/product.scss";
 import { load } from '@shopify/theme-sections';
+import '../sections/product';
 
-load([]);
+
+load(['product']);
