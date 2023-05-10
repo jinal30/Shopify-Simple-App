@@ -1,0 +1,7 @@
+<span class="icon icon--inventory"></span>
+<span data-product-inventory data-threshold="{{ block.settings.inventory_progessbar }}">
+    {%- if inventory_visible -%}
+    {{ 'products.product.stock_label' | t: count: current_variant.inventory_quantity }}
+    {%- else -%}
+    {{ 'products.product.in_stock_label' | t }}
+    {%- endif -%}
