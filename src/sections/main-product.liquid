@@ -144,6 +144,12 @@
               </div>
             {% endif %}
 
+            {% when 'buy_buttons' %}
+            {%- unless product.empty? -%}
+              <div class="product-block">
+                {%- render 'product-form' -%}
+              </div>
+            {%- endunless -%}
 
           {%- endcase -%}
         {%- endfor -%}
@@ -244,6 +250,18 @@
             "type": "checkbox",
             "id": "inventory_transfers_enable",
             "label": "Show inventory transfer notice",
+            "default": true
+          }
+        ]
+      }, {
+        "type": "buy_buttons",
+        "name": "Buy buttons",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_dynamic_checkout",
+            "label": "Show dynamic checkout button",
             "default": true
           }
         ]

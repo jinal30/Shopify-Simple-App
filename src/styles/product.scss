@@ -86,3 +86,22 @@ button {
     margin: 0 0 -12px;
     position: relative
 }
+
+.icon--inventory:after,
+.icon--inventory:before {
+    width: 9px;
+    height: 9px;
+    background: #54c63a;
+    border-radius: 9px;
+    position: absolute;
+    content: "";
+    margin: 8px;
+}
+
+.icon--inventory:before {
+    animation: inventory-pulse 2s linear infinite;
+}
+
+.product-block {
+    margin-bottom: 25px
+}
