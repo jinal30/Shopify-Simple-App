@@ -1,7 +1,62 @@
 {
+    "general": {
+        "social": {
+            "share_on_facebook": "Share",
+            "share_on_twitter": "Tweet",
+            "share_on_pinterest": "Pin it",
+            "alt_text": {
+                "share_on_facebook": "Share on Facebook",
+                "share_on_twitter": "Tweet on Twitter",
+                "share_on_pinterest": "Pin on Pinterest"
+            }
+        }
+    },
     "cart": {
         "general": {
             "title": "Shopping cart"
+        }
+    },
+    "products": {
+        "general": {
+            "color_swatch_trigger": "Color",
+            "save_html": "Save {{ saved_amount }}",
+            "collection_return": "Back to {{ collection }}",
+            "next_product": "Next: {{ title }}",
+            "sale": "Sale",
+            "sale_price": "Sale price",
+            "regular_price": "Regular price",
+            "from_text_html": "from {{ price }}",
+            "recent_products": "Recently viewed"
+        },
+        "product": {
+            "description": "Description",
+            "in_stock_label": "In stock, ready to ship",
+            "stock_label": {
+                "one": "Low stock - {{ count }} item left",
+                "other": "Low stock - {{ count }} items left"
+            },
+            "sold_out": "Sold Out",
+            "unavailable": "Unavailable",
+            "quantity": "Quantity",
+            "add_to_cart": "Add to cart",
+            "preorder": "Pre-order",
+            "include_taxes": "Tax included.",
+            "shipping_policy_html": "<a href='{{ link }}'>Shipping<\/a> calculated at checkout.",
+            "will_not_ship_until": "Ready to ship {{ date }}",
+            "will_be_in_stock_after": "Back in stock {{ date }}",
+            "waiting_for_stock": "Inventory on the way",
+            "view_in_space": "View in your space",
+            "view_in_space_label": "View in your space, loads item in augmented reality window"
+        }
+    },
+    "contact": {
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "phone": "Phone number",
+            "message": "Message",
+            "send": "Send",
+            "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
         }
     }
 }

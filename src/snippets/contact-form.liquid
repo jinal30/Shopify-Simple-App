@@ -1,0 +1,40 @@
+{%- form 'contact', id: contact_form_id -%}
+    <button type="button" class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height accordionTitle" aria-controls="Product-content-{{ block.id }}">
+      {{ block.settings.title }}
+      <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="M1.57 1.59l12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none" fill-rule="evenodd"/></svg>
+      </span>      
+    </button>
+    <div id="Product-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+        <div class="collapsible-content__inner rte">
+          <div class="form-vertical">
+            <input type="hidden" name="contact[product]" value="Product question for: {{ shop.secure_url }}{{ product.url }}">
+  
+            <div class="grid grid--small">
+              <div class="grid__item medium-up--one-half">
+                <label for="ContactFormName-{{ block.id }}">{{ 'contact.form.name' | t }}</label>
+                <input type="text" id="ContactFormName-{{ block.id }}" class="input-full" name="contact[name]" autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+              </div>
+  
+              <div class="grid__item medium-up--one-half">
+                <label for="ContactFormEmail-{{ block.id }}">{{ 'contact.form.email' | t }}</label>
+                <input type="email" id="ContactFormEmail-{{ block.id }}" class="input-full" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+              </div>
+            </div>
+  
+            {%- if block.settings.phone -%}
+              <label for="ContactFormPhone-{{ block.id }}">{{ 'contact.form.phone' | t }}</label>
+              <input type="tel" id="ContactFormPhone-{{ block.id }}" class="input-full" name="contact[phone]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+            {%- endif -%}
+  
+            <label for="ContactFormMessage-{{ block.id }}">{{ 'contact.form.message' | t }}</label>
+            <textarea rows="5" id="ContactFormMessage-{{ block.id }}" class="input-full" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+  
+            <button type="submit" class="btn">
+              {{ 'contact.form.send' | t }}
+            </button>
+          </div>
+        </div>
+      </div>
+  
+{%- endform -%}

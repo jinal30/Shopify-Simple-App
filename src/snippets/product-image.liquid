@@ -1,0 +1,21 @@
+<div class="product-image flex">
+  <div>
+    {%- for media in product.media -%}
+      {%- assign img_url = media.src | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <div data-index="{{ forloop.index0 }}" class="images">
+        <img
+          class="product-sliders-img image__img p-1"
+          src="{{ media.src | img_url: '300x300' }}"
+          data-src="{{ img_url }}"
+          data-sizes="auto"
+          data-media-alt="{{ media.alt | handleize }}">
+
+      </div>
+    {%- endfor -%}
+  </div>
+  <div>
+    <div class="">
+      <img src="{{ product.featured_image | img_url: 'master' }}">
+    </div>
+  </div>
+</div>
