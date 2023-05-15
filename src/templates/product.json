@@ -1,7 +1,82 @@
 {
     "sections": {
         "main": {
-            "type": "main-product"
+            "type": "main-product",
+            "blocks": {
+                "54b0c443-fe6d-4787-9c82-6327e46ec1b4": {
+                    "type": "price",
+                    "settings": {}
+                },
+                "a5a1586b-7427-4444-9069-7e4a13c9fcb5": {
+                    "type": "variant_picker",
+                    "settings": {
+                        "variant_labels": true,
+                        "picker_type": "button"
+                    }
+                },
+                "7e4def48-5153-4c2f-9788-14dea406b271": {
+                    "type": "quantity_selector",
+                    "settings": {}
+                },
+                "3629a785-ee08-49b9-9994-32c9e2d0d73b": {
+                    "type": "sales_point",
+                    "settings": {
+                        "text": "Free worldwide shipping",
+                        "icon": "globe"
+                    }
+                },
+                "67044c28-dc64-4782-bb87-cf272b6b564f": {
+                    "type": "inventory_status",
+                    "settings": {
+                        "inventory_progessbar": 0,
+                        "inventory_transfers_enable": true
+                    }
+                },
+                "362bee71-aa3d-4c0c-85a1-0468634ecbaf": {
+                    "type": "buy_buttons",
+                    "settings": {
+                        "show_dynamic_checkout": true
+                    }
+                },
+                "37760342-b7e2-45ab-a1ce-8779fe2063c2": {
+                    "type": "description",
+                    "settings": {
+                        "is_tab": true
+                    }
+                },
+                "6273b095-a43f-4e55-adc0-8413078136a0": {
+                    "type": "tab",
+                    "settings": {
+                        "title": "Shipping information",
+                        "content": "<p>Use collapsible tabs for more detailed information that will help customers make a purchasing decision.<\/p><p>Ex: Shipping and return policies, size guides, and other common questions.<\/p>",
+                        "page": ""
+                    }
+                },
+                "7f334767-bbb6-4945-b6e1-c01f4af31869": {
+                    "type": "contact",
+                    "settings": {
+                        "title": "Ask a question",
+                        "phone": true
+                    }
+                },
+                "4b9a0b1d-f3b6-4f32-a5c2-6245e52a9105": {
+                    "type": "share",
+                    "settings": {}
+                }
+            },
+            "block_order": [
+                "54b0c443-fe6d-4787-9c82-6327e46ec1b4",
+                "a5a1586b-7427-4444-9069-7e4a13c9fcb5",
+                "7e4def48-5153-4c2f-9788-14dea406b271",
+                "3629a785-ee08-49b9-9994-32c9e2d0d73b",
+                "67044c28-dc64-4782-bb87-cf272b6b564f",
+                "362bee71-aa3d-4c0c-85a1-0468634ecbaf",
+                "37760342-b7e2-45ab-a1ce-8779fe2063c2",
+                "6273b095-a43f-4e55-adc0-8413078136a0",
+                "7f334767-bbb6-4945-b6e1-c01f4af31869",
+                "4b9a0b1d-f3b6-4f32-a5c2-6245e52a9105"
+            ],
+            "settings": {}
         }
     },
     "order": [

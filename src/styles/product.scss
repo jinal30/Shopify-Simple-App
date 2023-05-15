@@ -161,3 +161,38 @@ textarea {
 .social_link {
     margin: 0 18px 0 0;
 }
+
+.product-sliders-img {
+    width: 100%;
+}
+
+.product__thumbs {
+    order: -1;
+    margin-left: 0;
+    margin-right: 15px;
+    width: 300px;
+    height: 80px;
+    transform: rotate(90deg) translate(30px, -100%);
+    transform-origin: left top;
+}
+
+.product__thumbs [data-index] {
+    transform: rotate(-90deg);
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.flickity-button {
+    display: none;
+}
+
+.flickity-page-dot {
+    display: none;
+}
+
+.product__thumbs {
+    transform: rotate(90deg) translate(20px, -100%);
+    transform-origin: left top;
+}

@@ -1,63 +1,64 @@
-<div class="page-width">
-  <div class="product_page">
-    <div class="w-1/2">
-      {% render 'product-image' %}
-    </div>
-    <div class="w-1/2 p-5">
-      {% if product.vendor != blank %}
-        <span class="opacity-50">{{ product.vendor }}</span>
-      {% endif %}
+<section data-section-type="product-template" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="product_page">
+      <div class="w-1/2">
+        {% render 'product-image' %}
+      </div>
+      <div class="w-1/2 p-5">
+        {% if product.vendor != blank %}
+          <span class="opacity-50">{{ product.vendor }}</span>
+        {% endif %}
 
-      <h1>{{ product.title | escape }}</h1>
+        <h1>{{ product.title | escape }}</h1>
 
-      <div data-product-blocks>
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'price' -%}
-            <div>
-              {% if product.compare_at_price != blank %}
-                <s class="pr-3">{{ product.compare_at_price | money }}</s>
-              {% endif %}
-              {{ product.price | money }}
-            </div>
-
-            <!-- product qurntity -->
-            {%- when 'quantity_selector' -%}
-            <div class="pt-5">
-              <label>Quantity :
-              </label>
+        <div data-product-blocks>
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'price' -%}
               <div>
-                {% render 'quantity-input' %}
+                {% if product.compare_at_price != blank %}
+                  <s class="pr-3">{{ product.compare_at_price | money }}</s>
+                {% endif %}
+                {{ product.price | money }}
               </div>
-            </div>
 
-            {%- when 'variant_picker' -%}
-            <!-- variant button menu -->
-            <div class="pt-5">
-              {%- if block.settings.variant_labels -%}
-                {% for option in product.options_with_values %}
-                  <span>{{ option.name }}</span>
-                  {% if block.settings.picker_type == "button" %}
-                    <div>
-                      {% for value in option.values %}
-                        <button>{{ value }}</button>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
+              <!-- product qurntity -->
+              {%- when 'quantity_selector' -%}
+              <div class="pt-5">
+                <label>Quantity :
+                </label>
+                <div>
+                  {% render 'quantity-input' %}
+                </div>
+              </div>
 
-                  <!-- variant dropdown menu -->
-                  {% if block.settings.picker_type == "dropdown" %}
-                    <div
-                      class="variant-input-wrap"
-                      data-index="option{{ forloop.index }}"
-                      data-handle="{{ option.name | handleize }}">
-                      <select
-                        form="{{ form_id }}"
-                        data-variant-input
-                        id="SingleOptionSelector-{{ section_id }}-{{ product.id }}-option-{{ forloop.index0 }}"
-                        data-index="option{{ forloop.index }}">
-                        {%- for value in option.values -%}
-                          {%- liquid
+              {%- when 'variant_picker' -%}
+              <!-- variant button menu -->
+              <div class="pt-5">
+                {%- if block.settings.variant_labels -%}
+                  {% for option in product.options_with_values %}
+                    <span>{{ option.name }}</span>
+                    {% if block.settings.picker_type == "button" %}
+                      <div>
+                        {% for value in option.values %}
+                          <button>{{ value }}</button>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+
+                    <!-- variant dropdown menu -->
+                    {% if block.settings.picker_type == "dropdown" %}
+                      <div
+                        class="variant-input-wrap"
+                        data-index="option{{ forloop.index }}"
+                        data-handle="{{ option.name | handleize }}">
+                        <select
+                          form="{{ form_id }}"
+                          data-variant-input
+                          id="SingleOptionSelector-{{ section_id }}-{{ product.id }}-option-{{ forloop.index0 }}"
+                          data-index="option{{ forloop.index }}">
+                          {%- for value in option.values -%}
+                            {%- liquid
                           assign variant_label_state = true
                           if product.options.size == 1
                             unless product.variants[forloop.index0].available
@@ -65,130 +66,130 @@
                             endunless
                           endif
                         -%}
-                          <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}name="{{ option.name }}"class="variant-input"data-index="option{{ forloop.index }}">
-                            {{ value }}
-                          </option>
-                        {%- endfor -%}
-                      </select>
-                    </div>
-                  {% endif %}
+                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}name="{{ option.name }}"class="variant-input"data-index="option{{ forloop.index }}">
+                              {{ value }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                      </div>
+                    {% endif %}
 
-                {% endfor %}
-              {%- endif -%}
-            </div>
+                  {% endfor %}
+                {%- endif -%}
+              </div>
 
-            {% when 'sales_point' %}
-            <div class="pt-5">
-              {% case block.settings.icon %}
-                {% when 'checkmark' %}
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  role="presentation"
-                  class="icon icon-circle-checkmark"
-                  viewBox="0 0 64 64">
-                  <defs>
-                    <style>
-                      .cls-1 {
-                        fill: none;
-                        stroke: #000;
-                        stroke-width: 2px
-                      }
-                    </style>
-                  </defs><path class="cls-1" d="M52.68 24.48A22 22 0 1 1 47 15.93M21 32l8.5 8.5L57 13" /></svg>
-                {% when 'globe' %}
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  role="presentation"
-                  class="icon icon-globe"
-                  viewBox="0 0 64 64">
-                  <defs>
-                    <style>
-                      .cls-1 {
-                        fill: none;
-                        stroke: #000;
-                        stroke-width: 2px
-                      }
-                    </style>
-                  </defs><circle
-                    class="cls-1"
-                    cx="33"
-                    cy="32"
-                    r="22" /><path class="cls-1" d="M14 21h38M11 32h44M14 43h38M33 10c-12 8-12 37 0 44M33 10c12 8 12 37 0 44" /></svg>
-                {% when 'leaf' %}
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  role="presentation"
-                  class="icon icon-leaf"
-                  viewBox="0 0 64 64">
-                  <defs>
-                    <style>
-                      .cls-1 {
-                        fill: none;
-                        stroke: #000;
-                        stroke-miterlimit: 10;
-                        stroke-width: 2px
-                      }
-                    </style>
-                  </defs><path class="cls-1" d="M51 12L13 50M35 13v15h16" /><path class="cls-1" d="M52 11c6 24-16.72 47.29-33 32C7 22 29 10 52 11z" /></svg>
-              {% endcase %}
-              {{ block.settings.text }}
-            </div>
+              {% when 'sales_point' %}
+              <div class="pt-5">
+                {% case block.settings.icon %}
+                  {% when 'checkmark' %}
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                    class="icon icon-circle-checkmark"
+                    viewBox="0 0 64 64">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                          stroke-width: 2px
+                        }
+                      </style>
+                    </defs><path class="cls-1" d="M52.68 24.48A22 22 0 1 1 47 15.93M21 32l8.5 8.5L57 13" /></svg>
+                  {% when 'globe' %}
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                    class="icon icon-globe"
+                    viewBox="0 0 64 64">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                          stroke-width: 2px
+                        }
+                      </style>
+                    </defs><circle
+                      class="cls-1"
+                      cx="33"
+                      cy="32"
+                      r="22" /><path class="cls-1" d="M14 21h38M11 32h44M14 43h38M33 10c-12 8-12 37 0 44M33 10c12 8 12 37 0 44" /></svg>
+                  {% when 'leaf' %}
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                    class="icon icon-leaf"
+                    viewBox="0 0 64 64">
+                    <defs>
+                      <style>
+                        .cls-1 {
+                          fill: none;
+                          stroke: #000;
+                          stroke-miterlimit: 10;
+                          stroke-width: 2px
+                        }
+                      </style>
+                    </defs><path class="cls-1" d="M51 12L13 50M35 13v15h16" /><path class="cls-1" d="M52 11c6 24-16.72 47.29-33 32C7 22 29 10 52 11z" /></svg>
+                {% endcase %}
+                {{ block.settings.text }}
+              </div>
 
-            {% when 'inventory_status' %}
-            {% if block.settings.inventory_transfers_enable %}
+              {% when 'inventory_status' %}
+              {% if block.settings.inventory_transfers_enable %}
+                <div>
+                  {% render 'product-inventory-input' %}
+                </div>
+              {% endif %}
+
+              {% when 'buy_buttons' %}
+              {%- unless product.empty? -%}
+                <div class="product-block pt-5">
+                  {%- render 'product-form', form_id: form_id 
+                    , product: product,
+                    show_dynamic_checkout: block.settings.show_dynamic_checkout,
+                    current_variant: current_variant -%}
+                </div>
+              {%- endunless -%}
+
+              {%- when 'description' -%}
+              <div class="product-block{% if block.settings.is_tab %} product-block--tab{% endif %}" {{ block.shopify_attributes }}>
+                {%- render 'product-description', id: block.id, product: product, is_tab: block.settings.is_tab -%}
+              </div>
+
+              {%- when 'tab' -%}
+              <div class="product-block product-block--tab" {{ block.shopify_attributes }}>
+                {% assign tab_id = block.id | append: product.id %}
+                {% capture tab_content %}
+                  {{ block.settings.content }}
+                  {{ block.settings.page.content }}
+                {% endcapture %}
+                {%- render 'tab', id: tab_id, title: block.settings.title, content: tab_content -%}
+              </div>
+
+              {%- when 'contact' -%}
+              <div class="product-block product-block--tab" {{ block.shopify_attributes }}>
+                {%- render 'contact-form', block: block -%}
+              </div>
+
+              {%- when 'share' -%}
               <div>
-                {% render 'product-inventory-input' %}
+                {% render 'social-sharing' %}
               </div>
-            {% endif %}
 
-            {% when 'buy_buttons' %}
-            {%- unless product.empty? -%}
-              <div class="product-block pt-5">
-                {%- render 'product-form', form_id: form_id 
-                  , product: product,
-                  show_dynamic_checkout: block.settings.show_dynamic_checkout,
-                  current_variant: current_variant -%}
-              </div>
-            {%- endunless -%}
-
-            {%- when 'description' -%}
-            <div class="product-block{% if block.settings.is_tab %} product-block--tab{% endif %}" {{ block.shopify_attributes }}>
-              {%- render 'product-description', id: block.id, product: product, is_tab: block.settings.is_tab -%}
-            </div>
-
-            {%- when 'tab' -%}
-            <div class="product-block product-block--tab" {{ block.shopify_attributes }}>
-              {% assign tab_id = block.id | append: product.id %}
-              {% capture tab_content %}
-                {{ block.settings.content }}
-                {{ block.settings.page.content }}
-              {% endcapture %}
-              {%- render 'tab', id: tab_id, title: block.settings.title, content: tab_content -%}
-            </div>
-
-            {%- when 'contact' -%}
-            <div class="product-block product-block--tab" {{ block.shopify_attributes }}>
-              {%- render 'contact-form', block: block -%}
-            </div>
-
-            {%- when 'share' -%}
-            <div>
-              {% render 'social-sharing' %}
-            </div>
-
-          {%- endcase -%}
-        {%- endfor -%}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
       </div>
+
     </div>
 
   </div>
 
-</div>
-
-
+</section>
 
 {% schema %}
   {
