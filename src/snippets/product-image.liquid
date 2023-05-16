@@ -1,6 +1,6 @@
-<div class="product-image flex w-full">
+ <div class="product-image flex w-full">
 
-  <div class="carousel-main w-full">
+  <div class="carousel-main w-full" data-flickity>
     {%- for media in product.media -%}
       <div class="carousel-item w-full">
         <img
@@ -14,7 +14,7 @@
   <div class="thumb-Slider product__thumbs">
     {%- for media in product.media -%}
       {%- assign img_url = media.src | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-      <div data-index="{{ forloop.index0 }}">
+      <div data-index="{{ forloop.index0 }}" class="carousel-item">
         <img
           class="product-sliders-img image__img p-1"
           src="{{ media.src | img_url: '300x300' }}"

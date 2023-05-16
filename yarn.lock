@@ -2032,6 +2032,13 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
 
+flickity-as-nav-for@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/flickity-as-nav-for/-/flickity-as-nav-for-3.0.0.tgz#7737e841354e88272a3ded29979e7e44a1a535f7"
+  integrity sha512-JBeVvmkrzPQJ83/Y5KrwG/7waXQdgeEKyH709MwAgG4HTUTmDyehq7nTE8KDt4vpj0o4zs2yVqonGYx7APeRbQ==
+  dependencies:
+    fizzy-ui-utils "^3.0.0"
+
 flickity@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/flickity/-/flickity-3.0.0.tgz#568d14d17acece85e08eddc2589c968a458c8861"

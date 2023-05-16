@@ -28,7 +28,7 @@
                 <label>Quantity :
                 </label>
                 <div>
-                  {% render 'quantity-input' %}
+                  {%- render 'quantity-input', form_id: form_id, id: qty_id, qty: 1, min: 1 -%}
                 </div>
               </div>
 
